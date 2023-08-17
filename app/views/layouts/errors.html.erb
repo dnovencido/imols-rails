@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Imols</title>
+    <title>FAD Portal</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,15 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body class="bg-white dark:bg-slate-800">
-    <%= render 'layouts/user-navigation' %>
-      <%= render 'layouts/messages' %>    
-      <% if user_signed_in? %>
-        <%= render 'layouts/user-nav-pill' %>
-      <% end %>
-      <main class="container mx-auto mt-20">
+    <main class="grid h-screen place-items-center">
         <%= yield %>
-      </main>
+    </main>
   </body>
 </html>
+

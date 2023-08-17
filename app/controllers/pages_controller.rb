@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-    layout "application_user"
-    
     def home
     end
 

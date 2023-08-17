@@ -1,0 +1,14 @@
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<tbody>
+    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+        <%  @service_transaction.service_transaction_details.service_details.each do |key, val| %>
+            <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+               <%= key %>
+            </th>
+            <td class="px-6 py-4">
+                <% val %>
+            </td>
+        <% end %>
+    </tr>
+</tbody>
+</table>

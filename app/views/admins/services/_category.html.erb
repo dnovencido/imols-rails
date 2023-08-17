@@ -1,0 +1,24 @@
+<div id="category-item-<%= (!i.object.id.nil?) ? i.object.id : i.index %>" class="row flex gap-10 justify-items-center items-center category-item">
+    <%= i.hidden_field :id %>
+    <div class="flex-auto mt-5">
+        <%= i.label :name, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= i.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Enter Name"  %>
+    </div>
+    <div class="flex-auto mt-5">
+        <%= i.label :category_code, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= i.text_field :category_code, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Enter Code"  %>
+    </div>
+    <div class="flex-auto mt-5">
+        <%= i.label :category_description, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= i.text_field :category_description, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Enter Description"  %>
+    </div>
+    <div class="flex-auto" data-controller="service" data-id="<%= (!i.object.id.nil?) ? i.object.id : i.index %>">
+        <div class="mt-10">    
+            <% if !i.object.id.nil? %>
+                <%= link_to 'Remove', admins_category_path(i.object.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete category?' }, class: 'px-3 py-2 text-xs text-red-700 font-medium hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900' %>
+            <% else %>
+                <button type="button" class="mt-3 px-3 py-2 text-xs text-red-700 font-medium hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" data-action="profile#removeImmediateFam" data-id="<%= i.index %>">Remove</button>
+            <% end %>
+        </div>
+    </div>
+</div>
