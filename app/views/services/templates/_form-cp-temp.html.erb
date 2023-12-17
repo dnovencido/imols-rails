@@ -1,0 +1,475 @@
+<div class="form mb-10">
+    <div id="primary-form">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <tbody>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Category
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.category.name %>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Type of Application
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= ApplicationType.find(service_transaction.service_details['application_type']).name %>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Type of Radio Service
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= RadioServiceType.find(service_transaction.service_details['radio_service_type']).name %>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        No. of years
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.service_details['no_years'] %>
+                    </td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Nature of service
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= NatureService.find(service_transaction.service_details['nature_service']).name %>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                        Class of Stations
+                    </th>
+                    <th scope="row" colspan="7" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                        Number of Units
+                    </th>
+                </tr>
+                <% service_transaction.service_details['class_stations'].each do |key, val| %>
+                    <% if(!val.empty?) %>
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td class="px-6 py-4 bg-gray-100"><%= key.upcase %></td>
+                            <td class="px-6 py-4"><%= val %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th colspan="8" scope="row" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                        Applicant's Details
+                    </th>
+                <tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Applicant
+                    </th>
+                    <td colspan="7" class="px-6 py-4"><%= service_transaction.applicant_details['applicant'] %></td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Unit/Rm/Bldg no.
+                    </th>
+                    <td colspan="3"class="px-6 py-4"><%= service_transaction.applicant_details['unit_rm_building_no'] %></td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Street
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['street'] %></td>
+                <tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Barangay
+                    </th>
+                    <td colspan="3"class="px-6 py-4"><%= service_transaction.applicant_details['barangay'] %></td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        City/Municipality 
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['city_mun'] %></td>
+                <tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Province
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['province'] %></td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Zip Code
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['zip_code'] %></td>
+                <tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Contact No.
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['contact_no'] %></td>
+                    <th scope="row" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Email Address
+                    </th>
+                    <td colspan="3" class="px-6 py-4"><%= service_transaction.applicant_details['email_address'] %></td>
+                <tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th colspan="8" scope="row" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                        Particulars of Station/Equipment/Antenna 
+                    </th>
+                </tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                        Station
+                    </th>
+                    <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                        Equipment
+                    </th>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Exact Location
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['exact_location'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Make/Type/Model
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['make_type_model'] %>
+                    </td>
+                </tr>   
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Longitude
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['long'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Latitude
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['lat'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Serial Number
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['serial_no'] %>
+                    </td>
+                </tr>   
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th rowspan="2" scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Points of Comm/Service Area
+                    </th>
+                    <td rowspan="2" colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['points_comm_service_area'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Power Output
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['power_output'] %>
+                    </td>
+                </tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Frequency Range
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['frequency_range'] %>
+                    </td>
+                </tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Assigned Frequency
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['assigned_frequency'] %>
+                    <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                        Antenna
+                    </th>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        BW &amp; Emmission
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['bw_emission'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Type
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['type'] %>
+                    </td>
+                </tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Configuration
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['configuration'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Height (m)
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['height'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Gain (dB)
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['gain'] %>
+                    </td>
+                </tr>  
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Data Rate
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['data_rate'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Call Sign
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['call_sign'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Directivity
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['directivity'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Others
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['others'] %>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        RSL No.
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['rsl_no'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Polarization
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['polarization'] %>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Validity
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['validity'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Beamwidth
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['beamwidth'] %>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Others, specify
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['others'] %>
+                    </td>
+                    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Diameter (for microwave)
+                    </th>
+                    <td colspan="3" class="px-6 py-4">
+                        <%= service_transaction.particulars[0]['item']['diameter'] %>
+                    </td>
+                </tr>                                                                                                                                   
+            </tbody>
+        </table>
+    </div>
+    <% if !service_transaction['particulars'].nil? %>
+        <div id="multiple-particulars">
+            <% service_transaction['particulars'].each.with_index do |particulars, index| %>
+                <% if index > 0 %> 
+                    <table class="particulars-item w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th class="px-6 py-4 font-medium uppercase bg-slate-400 text-gray-900 whitespace-nowrap dark:text-white" scope="col" colspan="7">
+                                    For multiple Stations/Equipment/Antenna
+                                </th>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white" scope="col" colspan="7">Paticulars # <%= index %></th>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" colspan="8" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Station
+                                </th>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Exact Location
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['exact_location'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Longitude
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['long'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Latitude
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['lat'] %>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Points of Comm/Service Area
+                                </th>
+                                <td colspan="3" class="px-6 py-4">
+                                    <%= particulars['item']['points_comm_service_area'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Assigned Frequency
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['assigned_frequency'] %>
+                                </td>
+                            </tr> 
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    BW &amp; Emission
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['bw_emission'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Configuration
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['configuration'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Data Rate
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['assigned_frequency'] %>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Call Sign
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['call_sign'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Validity
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['call_sign'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Others
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['others'] %>
+                                </td>
+                            </tr> 
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" colspan="8" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Equipment
+                                </th>
+                            </tr>    
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Make/Type/Model
+                                </th>
+                                <td colspan="2" class="px-6 py-4">
+                                    <%= particulars['item']['make_type_model'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Serial No.
+                                </th>
+                                <td colspan="2" class="px-6 py-4">
+                                    <%= particulars['item']['serial_no'] %>
+                                </td>
+                            </tr> 
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Power Output
+                                </th>
+                                <td colspan="2" class="px-6 py-4">
+                                    <%= particulars['item']['power_output'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Frequency Range
+                                </th>
+                                <td colspan="2" class="px-6 py-4">
+                                    <%= particulars['item']['frequency_range'] %>
+                                </td>
+                            </tr> 
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" colspan="8" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Antenna
+                                </th>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Type
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['type'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Height (m)
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['height'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Gain (db)
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['gain'] %>
+                                </td>
+                            </tr>   
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Directivity (degrees)
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['directivity'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Diameter
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['diameter'] %>
+                                </td>
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Polarization
+                                </th>
+                                <td class="px-6 py-4">
+                                    <%= particulars['item']['polarization'] %>
+                                <td>
+                            </tr> 
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">   
+                                <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                                    Beamwidth (degrees)
+                                </th>
+                                <td colspan="2" class="px-6 py-4">
+                                    <%= particulars['item']['beamwidth'] %>
+                                </td>
+                            </tr>                                    
+                        </tbody>
+                    </table>   
+                <% end %>         
+            <% end %>
+        </div>
+    <% end %>
+</div>

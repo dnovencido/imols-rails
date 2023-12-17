@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :services, only: [ :index, :show ]
+    resources :services, only: [ :index ]
   end
 
   devise_for :users, path: 'users', controllers: {
@@ -29,6 +29,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   namespace :services do
-    resources :service_transactions
+    resources :service_transactions, path: :applications
   end
 end

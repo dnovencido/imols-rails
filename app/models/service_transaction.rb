@@ -1,4 +1,4 @@
 class ServiceTransaction < ApplicationRecord
-    has_one :service_transaction_details, dependent: :destroy
-    accepts_nested_attributes_for :service_transaction_details
+    belongs_to :category
+    has_one :form, through: :category
 end

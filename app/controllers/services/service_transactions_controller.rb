@@ -1,10 +1,14 @@
 class Services::ServiceTransactionsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_form
     before_action :set_service_transaction, only: [ :show, :edit, :update, :destroy ]
+
+    def index
+        @service_transactions = ServiceTransaction.all
+    end
 
     def new
         @service_transaction = ServiceTransaction.new
+        @service_transaction.category_id = params[:id]
     end
 
     def show
@@ -21,19 +25,24 @@ class Services::ServiceTransactionsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @service_transaction.update(service_transaction_params)
+            flash[:notice] = "Application was updated successfully."
+            redirect_to services_service_transaction_path(@service_transaction)
+        else
+            render 'edit', status: :unprocessable_entity
+        end
+    end
+
     private
 
     def service_transaction_params
         params.require(:service_transaction).permit(
-            :category_id, service_transaction_details_attributes: [ :service_details => {} ]
+            :category_id, :declaration, :service_details => {}, :applicant_details => {}, particulars: [ :item => {} ]
         )
-    end
-
-    def set_form
-        case params[:form]
-            when 'AC', 'CMTS', 'FLM', 'SS'
-             @form = 'form-cp'
-        end
     end
 
     def set_service_transaction

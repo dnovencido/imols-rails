@@ -1,0 +1,11 @@
+<div class="edit-service-transaction">
+    <div class="mb-5">
+        <h4 class="text-2xl font-bold dark:text-white">Update: <%= @service_transaction.category.form.title  %></h4>
+    </div>
+    <%= render 'shared/errors', obj: @service_transaction %>
+    <div class="edit-services-form flex justify-center items-center">
+        <div class="basis-full bg-white border border-gray-200 rounded-lg shadow sm:p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
+            <%= render "#{@service_transaction.category.form.name}", service_transaction: @service_transaction %>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_001224) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_012743) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -21,6 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_001224) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "application_types", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -38,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_001224) do
     t.integer "form_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "form_num"
+  end
+
+  create_table "nature_services", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -51,12 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_001224) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "service_transaction_details", force: :cascade do |t|
-    t.integer "service_transaction_id"
-    t.json "service_details"
-    t.json "applicant_details"
-    t.json "particulars"
-    t.integer "declaration"
+  create_table "radio_service_types", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,6 +79,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_001224) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "service_details"
+    t.json "applicant_details"
+    t.json "particulars"
+    t.integer "declaration"
   end
 
   create_table "services", force: :cascade do |t|

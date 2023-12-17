@@ -5,8 +5,8 @@
     <%= render 'shared/errors', obj: @service_transaction %>
     <div class="new-services-form flex justify-center items-center">
         <div class="basis-full bg-white border border-gray-200 rounded-lg shadow sm:p-4 md:p-6 dark:bg-gray-800 dark:border-gray-700">
-            <% if (!@form.nil?) %>
-            <%= render @form, service_transaction: @service_transaction %>
+            <% if (!@service_transaction.category.form.nil?) %>
+                <%= render @service_transaction.category.form.name, service_transaction: @service_transaction %>
             <% else %>
                 <p>Application form cannot be found.</p>
             <% end %>

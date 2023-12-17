@@ -1,0 +1,179 @@
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Exact Location
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][exact_location]', !particulars.nil? ? particulars['exact_location'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Exact Location"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Make/Type/Model
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][make_type_model]', !particulars.nil? ? particulars['make_type_model'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Make/Type/Model"  %>
+    </td>
+</tr>
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Longitude
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][long]', !particulars.nil? ? particulars['long'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Longitude"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Latitude
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][lat]', !particulars.nil? ? particulars['lat'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Latitude"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Serial Number
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][serial_no]', !particulars.nil? ? particulars['serial_no'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Serial Number"  %>
+    </td>
+</tr>
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th rowspan="2" scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Points of Comm/Service Area
+    </th>
+    <td rowspan="2" colspan="3" class="px-6 py-4">
+        <%= text_area_tag 'service_transaction[particulars][][item][points_comm_service_area]', !particulars.nil? ? particulars['points_comm_service_area'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Points of Comm/Service Area"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Power Output
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][power_output]', !particulars.nil? ? particulars['power_output'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Power Output"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Frequency Range
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][frequency_range]', !particulars.nil? ? particulars['frequency_range'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Frequency Range"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Assigned Frequency
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][assigned_frequency]', !particulars.nil? ? particulars['assigned_frequency'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Assigned Frequency"  %>
+    </td>
+    <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+        Antenna
+    </th>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        BW & Emmission
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][bw_emission]', !particulars.nil? ? particulars['bw_emission'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter BW & Location"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Type
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][type]', !particulars.nil? ? particulars['type'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Type"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Configuration
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][configuration]', !particulars.nil? ? particulars['configuration'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Configuration"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Height (m)
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][height]', !particulars.nil? ? particulars['height'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Height"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Gain (dB)
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][gain]', !particulars.nil? ? particulars['gain'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Gain"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Data Rate
+    </th>
+    <td  class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][data_rate]', !particulars.nil? ? particulars['data_rate'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Data Rate"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Call Sign
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][call_sign]', !particulars.nil? ? particulars['call_sign'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Call Sign"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Directivity
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][directivity]', !particulars.nil? ? particulars['directivity'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Directivity"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Others
+    </th>
+    <td class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][others]', !particulars.nil? ? particulars['others'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Others"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       RSL No.
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][rsl_no]', !particulars.nil? ? particulars['rsl_no'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter RSL No."  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+      Polarization
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][polarization]', !particulars.nil? ? particulars['polarization'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Polarization"  %>
+    </td>
+</tr>
+
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+       Validity
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][validity]', !particulars.nil? ? particulars['validity'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Validity"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+      Beamwidth
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][beamwidth]', !particulars.nil? ? particulars['beamwidth'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Beamwidth"  %>
+    </td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+        Others, specify
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][others_specify]', !particulars.nil? ? particulars['others_specify'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Others, specify"  %>
+    </td>
+    <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+      Diameter (for microwave)
+    </th>
+    <td colspan="3" class="px-6 py-4">
+        <%= text_field_tag 'service_transaction[particulars][][item][diameter]', !particulars.nil? ? particulars['diameter'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Diameter"  %>
+    </td>
+</tr>
+

@@ -12,7 +12,7 @@
                     <% if service.categories.any? %>
                         <% service.categories.each do |category| %>
                         <li>
-                            <%= link_to category.name, new_services_service_transaction_path(form: category.code)  %>
+                            <%= link_to category.name, new_services_service_transaction_path(id: category.id)  %>
                         </li>
                         <% end %>
                     <% end %>

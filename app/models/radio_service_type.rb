@@ -1,0 +1,2 @@
+class RadioServiceType < ApplicationRecord
+end

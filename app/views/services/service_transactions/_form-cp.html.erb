@@ -1,17 +1,229 @@
-<%= form_with(model: [:services, service_transaction], local: true) do |f|%>
-    <div class="flex-auto">
-        <%= f.label :category_id, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a service" }, { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" }  %>
+<div id="form" data-controller="construction-permit" >
+    <%= form_with(model: [:services, service_transaction], local: true) do |f|%>
+    <div id="form-details" data-construction-permit-target="formDetails">
+        <div class="flex-auto">
+            <%= f.label :category_id, class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a service" }, { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" }  %>
+        </div>
+
+        <div class="row flex gap-10">
+            <div class="mt-5 flex-auto w-64">
+                <%= label_tag 'service_transaction[service_details][application_type]', 'Type of Application', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= select_tag 'service_transaction[service_details][application_type]', options_from_collection_for_select(ApplicationType.all, "id", "name", !service_transaction.service_details.nil? ? service_transaction.service_details['application_type'] : nil), prompt: "Select type of application...", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", data: { action: "change->construction-permit#modification" } %>
+            </div>
+            <div class="mt-5 flex-auto w-64">
+                <%= label_tag 'service_transaction[service_details][radio_service_type]', 'Type of Radio Service', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= select_tag 'service_transaction[service_details][radio_service_type]', options_from_collection_for_select(RadioServiceType.all, "id", "name", !service_transaction.service_details.nil? ? service_transaction.service_details['radio_service_type'] : nil), prompt: "Select type of radio service...", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" %>
+            </div>
+        </div>
+
+        <div class="row flex gap-10">
+            <div class="row mt-5 flex-auto w-64">
+                <%= label_tag 'service_transaction[service_details][no_years]', 'No. Years', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= text_field_tag 'service_transaction[service_details][no_years]', !service_transaction.service_details.nil? ? service_transaction.service_details['no_years'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. year"  %>
+            </div>  
+            <div class="mt-5 flex-auto w-64">
+                <%= label_tag 'service_transaction[service_details][nature_service]', 'Nature of Service', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= select_tag 'service_transaction[service_details][nature_service]', options_from_collection_for_select(NatureService.all, "id", "name", !service_transaction.service_details.nil? ? service_transaction.service_details['nature_service'] : nil), prompt: "Select nature of service...", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" %>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <%= label_tag 'Class of Station', nil, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <div id="class_of_station" class="grid grid-cols-4 gap-4 ">
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][rt]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['rt'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter No. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][rt]', 'RT', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][ml]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['ml'] : '', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][ml]', 'ML', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][fc]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['fc'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][fc]', 'FC', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][tc]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['tc'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][tc]', 'TC', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][fx]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['fx'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][fx]', 'FX', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][p]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['p'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][p]', 'P', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][fa]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['fa'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][fa]', 'FA', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div>
+                    <%= label_tag 'service_transaction[service_details][class_stations][others]', 'Others, specify', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                    <div class="flex gap-3 items-center mr-5">
+                        <%= text_field_tag 'service_transaction[service_details][class_stations][others]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['others'] : '', class: "w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                        <%= text_field_tag 'service_transaction[service_details][class_stations][others_name]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['others_name'] : '', class: "w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Specify"  %>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][fb]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['fb'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][fb]', 'FB', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][bc]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['bc'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][bc]', 'BC', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+                <div class="flex gap-3 items-center mr-5">
+                    <%= text_field_tag 'service_transaction[service_details][class_stations][ma]', !service_transaction.service_details.nil? ? service_transaction.service_details['class_stations']['ma'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter no. of units"  %>
+                    <%= label_tag 'service_transaction[service_details][class_stations][ma]', 'MA', class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mt-10">
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" colspan="10" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                            Applicant's Details
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Applicant
+                        </th>
+                        <td colspan="9" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][applicant]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['applicant'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Applicant"  %>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Unit/Rm/Bldg No.
+                        </th>
+                        <td colspan="3" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][unit_rm_building_no]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['unit_rm_building_no'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Unit/Room/Building No."  %>
+                        </td>
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Street
+                        </th>
+                        <td colspan="5" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][street]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['street'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Unit/Room/Building No."  %>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Barangay
+                        </th>
+                        <td colspan="3" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][barangay]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['barangay'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Barangay"  %>
+                        </td>
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            City/Municipality
+                        </th>
+                        <td colspan="5" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][city_mun]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['city_mun'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter City/Municipality"  %>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Province
+                        </th>
+                        <td colspan="3" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][province]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['province'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Province"  %>
+                        </td>
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                        Zip Code
+                        </th>
+                        <td colspan="5" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][zip_code]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['zip_code'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Zip Code"  %>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Contact No. 
+                        </th>
+                        <td colspan="3" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][contact_no]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['contact_no'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Contact No."  %>
+                        </td>
+                        <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">
+                            Email Address
+                        </th>
+                        <td colspan="5" class="px-6 py-4">
+                            <%= text_field_tag 'service_transaction[applicant_details][email_address]', !service_transaction.applicant_details.nil? ? service_transaction.applicant_details['email_address'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Email Address"  %>
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" colspan="10" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                            Particulars of Station/Equipment/Antenna
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                            Station
+                        </th>
+                        <th scope="col" colspan="4" class="px-6 py-4 font-medium bg-slate-200 text-gray-900 whitespace-nowrap dark:text-white">
+                            Equipment
+                        </th>
+                    </tr>
+                    <% if !service_transaction.particulars.nil? %>
+                        <%= render partial: "services/templates/form-cp-particulars", locals: { particulars: service_transaction.particulars[0]['item'] } %>
+                    <% else %>
+                        <%= render partial: "services/templates/form-cp-particulars", locals: { particulars: nil } %>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="particulars">
+            <div data-construction-permit-target="particularsSection">
+            <% if !service_transaction.particulars.nil? %>
+                <% service_transaction.particulars.each_with_index do |particulars, index| %>
+                    <%= render partial: "services/templates/form-cp-particulars-multiple", locals: { particulars: particulars['item'], count: index } if index > 0 %>
+                <% end %>
+            <% end %>
+            </div>
+            <div id="add-particulars" class="mt-5">
+                <div class="flex items-center p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        Click the <span class="font-medium">"Add Particulars"</span> button for multiple stations/equipment.
+                    </div>
+                </div>
+                <button type="button" data-action="click->construction-permit#addParticulars" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Particulars</button>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="col" colspan="10" class="px-6 py-4 font-medium bg-slate-300 text-gray-900 whitespace-nowrap dark:text-white">
+                            Declaration
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <td colspan="10" class="px-6 py-4">
+                            <div class="declaration flex">
+                                <%= f.check_box :declaration, class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+                                <label for="link-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    I hereby declare that all the above entries are true and correct. Under the Revised Penal Code, I shall be held liable for any willful false statement(s) or misrepresentation(s) made in this application form that may serve as a valid ground for the denial of this application and/or revocation of the permit/sertificate/license issued. Further, I am freely giving full consent for the collection and processing of personal information in accordance with Republic Act No. 10713, Data Privacy Act of 2012.
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="flex-auto mt-3">
-        <%= label_tag 'service_transaction[service_transaction_details_attributes][service_details][application_type]', 'Type of Application', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= select_tag 'service_transaction[service_transaction_details_attributes][service_details][application_type]', options_for_select([["New", "new"], ["Renewal", "ren"]]), prompt: "Select type of application...", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" %>
-    </div>
-    <div class="flex-auto mt-3">
-        <%= label_tag 'service_transaction[service_transaction_details_attributes][service_details][radio_service_type]', 'Type of Radio Service', class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= select_tag 'service_transaction[service_transaction_details_attributes][service_details][radio_service_type]', options_for_select([["Fixed and Land Mobile", "FLM"], ["Aeronotical", "AE"], ["Maritime", "MT"], ["Broadcast", "BC"], ["Others", "others"]]), prompt: "Select type of radio service...", class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" %>
-    </div>
+
     <div class="actions mt-5">
-        <%= f.submit "Create", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
-    </div>    
-<% end %>
+        <%= f.submit "Save", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+    </div>  
+    <% end %>
+</div>
