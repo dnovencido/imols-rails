@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_012743) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_29_055113) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -37,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_012743) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.string "code"
+    t.string "slug"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "forms", force: :cascade do |t|

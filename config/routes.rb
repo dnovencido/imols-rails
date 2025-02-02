@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   namespace :services do
-    resources :service_transactions, path: :applications
+    resources :service_transactions, path: :applications do 
+      get 'new/:slug', to: 'service_transactions#new', as: :new, on: :collection, param: :slug 
+    end
   end
 end

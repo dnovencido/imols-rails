@@ -49,9 +49,8 @@
                 Assigned Frequency
             </th>
             <td class="px-6 py-4">
-                <%= text_field_tag 'service_transaction[particulars][][item][assigned_frequency]', !particulars.nil? ? particulars['assigned_frequency'] : '', class: "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500", placeholder: "Enter Assigned Frequency"  %>
+                <%= select_tag('service_transaction[particulars][][item][frequency_type]', options_for_select([['Simplex', 'simp'], ['Duplex', 'dup']]), {class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"}) %>
             </td>
-    
         </tr> 
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
             <th scope="col" class="px-6 py-4 font-medium bg-gray-100 text-gray-900 whitespace-nowrap dark:text-white">

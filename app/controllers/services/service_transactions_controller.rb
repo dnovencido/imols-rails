@@ -1,5 +1,7 @@
 class Services::ServiceTransactionsController < ApplicationController
     before_action :authenticate_user!
+
+    before_action :set_category, only: [ :new ]
     before_action :set_service_transaction, only: [ :show, :edit, :update, :destroy ]
 
     def index
@@ -7,8 +9,12 @@ class Services::ServiceTransactionsController < ApplicationController
     end
 
     def new
+        if(@category.nil?)
+            flash[:alert] = "Application form not found."
+            redirect_to users_services_path
+        end
+
         @service_transaction = ServiceTransaction.new
-        @service_transaction.category_id = params[:id]
     end
 
     def show
@@ -47,5 +53,10 @@ class Services::ServiceTransactionsController < ApplicationController
 
     def set_service_transaction
         @service_transaction = ServiceTransaction.find(params[:id])
+    end
+
+    def set_category
+        return @category = nil if params[:slug].blank?
+        @category = Category.find_by(slug: params[:slug])
     end
 end

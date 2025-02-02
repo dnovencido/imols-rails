@@ -8,6 +8,12 @@ export default class extends Controller {
   }
 
   addParticulars() {
+    // Channels
+    const channels = [
+      { value: 'simp', text: 'Simplex' },
+      { value: 'dump', text: 'Duplex' },
+    ];
+
     var counter = document.querySelectorAll('.particulars-item').length;
   
     var table = document.createElement("table");
@@ -154,13 +160,40 @@ export default class extends Controller {
 
     var td_assigned_frequency_input = document.createElement("td");  
     td_assigned_frequency_input .setAttribute("class", "px-6 py-4");
-    var input_assigned_frequency = document.createElement("input")
-    input_assigned_frequency.setAttribute("type", "text")
+    var channel_list = document.createElement("div");
+    channel_list.setAttribute("id", "channel_list");
+
+    var channel_list_item = document.createElement("div");
+    var channel_list_add = document.createElement("button");
+    channel_list_add.setAttribute("class", "font-medium text-blue-600 dark:text-blue-500 hover:underline");
+    channel_list_add.appendChild(document.createTextNode("Add"));
+
+    channel_list_item.setAttribute("class", "flex gap-4");
+    channel_list_item.setAttribute("id", "channel-list-item");
+
+    var input_assigned_frequency = document.createElement("select");
     input_assigned_frequency.setAttribute("id", "service_transaction_particulars__item_assigned_frequency");
-    input_assigned_frequency.setAttribute("placeholder", "Enter Assigned Frequency");
-    input_assigned_frequency.setAttribute("class", "w-36 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500");
+    input_assigned_frequency.setAttribute("class", "mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500");
     input_assigned_frequency.setAttribute("name", "service_transaction[particulars][][item][assigned_frequency]");
+    
+    // Add channels to select
+    channels.forEach(optionData => {
+      const option = document.createElement("option");
+      option.value = optionData.value;
+      option.textContent = optionData.text;
+      input_assigned_frequency.appendChild(option);
+    });
+
+    var channel_item = document.createElement("input");
+    channel_item.setAttribute("placeholder", "Channel 1 - TX/RX (Mhz)");
+    channel_item.setAttribute("class", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500");
+
+    channel_list_item.appendChild(channel_item);
+    channel_list_item.appendChild(channel_list_add);
+    channel_list.appendChild(channel_list_item);
+
     td_assigned_frequency_input.appendChild(input_assigned_frequency);
+    td_assigned_frequency_input.appendChild(channel_list);
 
     tr.appendChild(th_assigned_frequency);
     tr.appendChild(td_assigned_frequency_input);
@@ -596,6 +629,38 @@ export default class extends Controller {
     this.particularsSectionTarget.appendChild(table);
   }
 
+  addChannels() {
+    var counter = document.querySelectorAll('.channel-item').length;
+    var channel = document.getElementById("channels");
+    var channelItem = document.createElement("div")
+    channelItem.setAttribute("class", "channel-item flex justify-center items-center gap-4 mb-5");
+
+    var inputChannel = document.createElement("input");
+
+    inputChannel.setAttribute("class", "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500");
+    inputChannel.setAttribute("name", "service_transaction[particulars][][item][channel][]");
+    inputChannel.setAttribute("placeholder", `Channel ${++counter} - TX/RX (Mhz)`);
+
+    var removeBtn = document.createElement("a");
+    var textRemove = document.createTextNode("Remove");
+    removeBtn.setAttribute("class", "btn-remove inline-block font-medium text-red-600 dark:text-red-500 hover:underline");
+    removeBtn.setAttribute("data-controller", "construction-permit");
+    removeBtn.setAttribute("data-action", "construction-permit#removeChannel");
+    removeBtn.setAttribute("href", "#");
+
+    removeBtn.appendChild(textRemove);
+
+    channelItem.appendChild(inputChannel);
+    channelItem.appendChild(removeBtn);
+
+    channel.appendChild(channelItem);
+  }
+
+  removeChannel(e) {
+    e.preventDefault();
+      this.element.closest("div.channel-item").remove();
+  }
+
   removeParticulars(e) {
     e.preventDefault();
     if (confirm("Are you sure you want to remove this particulars") == true) {
@@ -680,6 +745,10 @@ export default class extends Controller {
       if(form) 
         form.remove()
     }
+
+  }
+
+  renderChannelItem(element) {
 
   }
 }
